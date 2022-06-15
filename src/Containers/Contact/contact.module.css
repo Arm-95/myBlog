@@ -1,0 +1,139 @@
+.section {
+  background-color: #d7ece5;
+  padding: 30px;
+}
+.title_block {
+  width: 100%;
+  margin-left: 75px;
+}
+.name_block {
+  display: flex;
+  align-items: center;
+}
+.line_name {
+  width: 70px;
+  height: 1px;
+  background: black;
+}
+.name_item {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1d2130;
+}
+.subName {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 120%;
+  color: #1d2130;
+  max-width: 400px;
+}
+
+.text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1d2130;
+  opacity: 0.7;
+  max-width: 500px;
+}
+.title_second_blok {
+  width: 100%;
+  margin-left: 75px;
+}
+.secont_title_name {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 160%;
+  color: #1d2130;
+}
+.phone {
+  display: flex;
+  align-items: center;
+}
+.phone p {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #1d2130;
+}
+
+.phone p:last-child {
+  margin-left: 20px;
+}
+
+.sub_title_name {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 160%;
+  color: #1d2130;
+}
+.office P {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  color: #525560;
+}
+.networks {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d7ece5;
+  margin-bottom: 30px;
+  text-indent: 15px;
+}
+.lable {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 160%;
+  color: #1d2130;
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
+.textarea {
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  text-indent: 15px;
+}
+
+.section_two {
+  margin-top: 5rem;
+}
+.submit {
+  padding: 12px 55px;
+  color: #fff;
+  background: #26ce69;
+}
+.button_block {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.form_contact {
+  padding: 0 1rem;
+}
