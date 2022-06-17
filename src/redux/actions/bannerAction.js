@@ -1,20 +1,15 @@
 import { BANNER_HOME } from "../types";
 import { keys } from "../../keys";
 import axios from "axios";
-import { unauthorization } from "../../middleware";
 
 export const bannerInfo = () => (dispatch) => {
   axios
-    .get(`${keys.API_URI}/slider`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem(keys.token)}`,
-      },
-    })
+    .get(`${keys.API_URI}/api/v1/homeBanner`, {})
     .then((resp) => {
       dispatch({
         type: BANNER_HOME,
-        payload: resp.data.data,
+        payload: resp.data,
       });
     })
-    .catch((error) => unauthorization());
+    .catch((error) => console.log(error));
 };

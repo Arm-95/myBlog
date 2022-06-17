@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./home.module.css";
 import { SliderAll } from "../../Components";
 import settings from "./slider";
 import slider from "../../utils/slider";
 import { Container, Row, Col } from "react-bootstrap";
+import { bannerInfo } from "../../redux/actions/bannerAction";
+import { homeAboutAction } from "../../redux/actions/homeAboutAction";
+import { homeBuildActin } from "../../redux/actions/homeBuildAction";
+import { partnersAction } from "../../redux/actions/partnerAction";
+import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(bannerInfo());
+    dispatch(homeAboutAction());
+    dispatch(homeBuildActin());
+    dispatch(partnersAction());
+  }, []);
+  const data = useSelector((state) => state.BannerinfoReducer.bannerData);
+  const homeAboutData = useSelector((state) => state.homeAboutReducer.homabout);
+  const build = useSelector((state) => state.homeBuildReducer.build);
+  const partners = useSelector((state) => state.partnersReducer.partners);
+
+  console.log(partners, "data");
   //==​🔥​🔥​🔥​================SLIDER DESIGN CODE========​🔥​🔥​🔥​========
-  const BEST_SALE_SLIDER = slider.map((i) => {
+  const BEST_SALE_SLIDER = data?.map((i) => {
     return (
       <div key={i.id} className={styles.best_sale_box}>
         <div className={styles.sal_img_blco}>
-          <h3 className={styles.title_slider}>{i.title}</h3>
-          <img src={i.Image} alt="" />
+          <h3 className={styles.title_slider}>
+            {localStorage.getItem("lang") == "am" ? i.titleHy : i.titleEn}
+          </h3>
+          <img src={i.video} alt="" />
           <div className={styles.subtitle_blcok}>
-            <h4 className={styles.subtitle_slider}>{i.subtitle}</h4>
+            <h4 className={styles.subtitle_slider}>"asdasdasd"</h4>
             <div className={styles.line}></div>
           </div>
         </div>
@@ -34,29 +55,23 @@ const Home = () => {
             <Col sm={12} md={6} lg={6}>
               <div className={styles.name_two_block}>
                 <div className={styles.line_two}></div>
-                <h3 className={styles.just_name}>Know About us</h3>
+                <h3 className={styles.just_name}>know About Us</h3>
               </div>
               <h2 className={styles.title_two}>
-                We help nature smile and survive everywhere
+                {localStorage.getItem("lang") == "am"
+                  ? homeAboutData?.titleHy
+                  : homeAboutData?.titleEn}
               </h2>
               <p className={styles.text_two}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
-                commodo diam libero vitae erat. Aenean faucibus nibh et justo
-                cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
-                tristique posuere. Aenean faucibus nibh et justo cursus id
-                rutrum lorem imperdiet. Nunc ut sem vitae risus tristique
-                posuere.
+                {localStorage.getItem("lang") == "am"
+                  ? homeAboutData?.textHy
+                  : homeAboutData?.textEn}
               </p>
               <button className={styles.more}>Learn more</button>
             </Col>
             <Col sm={12} md={6} lg={6}>
               <div className={styles.img_two}>
-                <img
-                  src="https://previews.123rf.com/images/dolgachov/dolgachov1703/dolgachov170300207/72947836-happy-friends-playing-football-at-summer-garden.jpg"
-                  alt=""
-                />
+                <img src={homeAboutData?.image} alt="" />
               </div>
             </Col>
           </Row>
@@ -72,54 +87,18 @@ const Home = () => {
                 <div className={styles.partner_line}></div>
               </div>
             </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
-            <Col sm={12} md={6} lg={2}>
-              <div className={styles.partner_block}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/partner-logo-design-ai-supported-81262498.jpg"
-                  alt=""
-                />
-              </div>
-            </Col>
+            {partners
+              ? partners.map((i) => {
+                  return (
+                    <Col sm={12} md={6} lg={2} key={i.id}>
+                      <div className={styles.partner_block}>
+                        <img src={i.image} alt="" />
+                        <p>{i.namee}</p>
+                      </div>
+                    </Col>
+                  );
+                })
+              : null}
           </Row>
         </Container>
       </section>
@@ -133,11 +112,14 @@ const Home = () => {
                 <h3 className={styles.just_name}>Know About us</h3>
               </div>
               <h2 className={styles.title_two}>
-                We care for earth, care for the coming birth
+                {localStorage.getItem("lang") == "am"
+                  ? homeAboutData?.titleHy
+                  : homeAboutData?.titleEn}
               </h2>
               <p className={styles.text_two}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                {localStorage.getItem("lang") == "am"
+                  ? homeAboutData?.textHy
+                  : homeAboutData?.textEn}
               </p>
               <div className={styles.items_blok}>
                 <div className={styles.item_name_block}>
